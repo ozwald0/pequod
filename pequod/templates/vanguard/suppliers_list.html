@@ -1,0 +1,43 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+
+<div class="container">
+<div>
+    <h1>Proveedores</h1>
+    <a type="button" href="{% url 'vanguard_app:new_supplier' %}"  class="btn btn-success">alta de productos producto</a>
+    <a type="button" href="{% url 'vanguard_app:supplier_status_list' %}" class="btn btn-link">Nuevo status de proveedor</a>
+    <a type="button" href="{% url 'vanguard_app:supplier_level_list' %}" class="btn btn-link">Nuevo nivel de proveedor</a>
+    
+</div>
+<form class="d-flex" method="GET">{% csrf_token %}
+    <input class="form-control me-2" type="search" id="kword" name="kword" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="?order=id">id</a></th>
+            <th scope="col"><a href="?order=part">proveedor</a></th>
+            <th scope="col"><a href="?order=name">nivel de proveedor</a></th>
+            <th scope="col"><a href="?order=brand">status del proveedor</a></th>
+            <th scope="col">acciones</a></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in object_list %}
+        <tr>
+            <th scope="row">{{u.id}}</th>
+            <td>{{u.supplier_name}}</td>
+            <td>{{u.supplier_level.supplier_level_name}}</td>
+            <td>{{u.supplier_status.supplier_status_name}}</td>
+            <td><div><a type="button" href="{% url 'vanguard_app:supplier_detail' u.id %}" class="btn btn-primary btn-sm">Ver</a> <a type="button" href="{% url 'vanguard_app:supplier_update' u.id %}" class="btn btn-primary btn-sm">modificar</a></div></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock%}

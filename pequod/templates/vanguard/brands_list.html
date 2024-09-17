@@ -1,0 +1,41 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+
+<div class="container">
+<div>
+    <h1>Marcas</h1>
+    <a type="button" href="{% url 'vanguard_app:new_brand' %}"  class="btn btn-success">alta de marca</a>
+    
+</div>
+<form class="d-flex" method="GET">{% csrf_token %}
+    <input class="form-control me-2" type="search" id="kword" name="kword" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="?order=id">id</a></th>
+            <th scope="col"><a href="?order=brand">marca</a></th>
+            <th scope="col"><a href="?order=description">descripcion</a></th>
+            <th scope="col"><a href="?order=slogan">slogan</a></th>
+            <th scope="col">acciones</a></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in object_list %}
+        <tr>
+            <th scope="row">{{u.id}}</th>
+            <td>{{u.brand_name}}</td>
+            <td>{{u.brand_description}}</td>
+            <td>{{u.brand_slogan}}</td>
+            <td><div><a type="button" href="{% url 'vanguard_app:brand_detail' u.id %}" class="btn btn-primary btn-sm">Ver</a> <a type="button" href="{% url 'vanguard_app:brand_update' u.id %}" class="btn btn-primary btn-sm">modificar</a></div></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock%}

@@ -1,0 +1,31 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+{{ejemplo}}
+    <div class="container ">
+        <h1>detalles de producto</h1>
+        <h2>{{object.name}}</h2>
+        <h2>{{object.title}}</h2>
+        <h2>{{object.price}}</h2>
+        <h2>{{object.description}}</h2>
+        <h2>{{object.brand}}</h2>
+        <h2>{{object.model}}</h2>
+        <h2>{{object.quantity}}</h2>
+        <h2>{{object.supplier}}</h2>
+        <h2>{{object.category}}</h2>
+        <h2>{{object.google_title}}</h2>
+        <h2>{{object.specs}}</h2>
+        <h2>{{object.sku}}</h2>
+        <h2>{{object.product_status}}</h2>
+        <img src="/media/{{object.main_image}}" alt="">
+        <h2>{{object.thumbnail}}</h2>
+        <h2>{{object.slug}}</h2>
+        <h2>{{object.weight}}</h2>
+        <h2>{{object.height}}</h2>
+        <h2>{{object.width}}</h2>
+        <h2>{{object.deep}}</h2>
+    </div>    
+
+{% endblock%}

@@ -1,0 +1,17 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+{{ejemplo}}
+    <div class="container ">
+        <h1>detalles del empleado</h1>
+        <h2>{{object.names}}</h2>
+        <h2>{{object.email}}</h2>
+        <h2>{{object.telephone}}</h2>
+        <h2>{{object.created}}</h2>
+        <h2>{{object.status}}</h2>
+        <h2>{{object.country}}</h2>
+    </div>    
+
+{% endblock%}

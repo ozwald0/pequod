@@ -1,0 +1,45 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+<div class="container">
+<div>
+    <h1>Lista de productos</h1>
+    <a type="button" href="{% url 'vanguard_app:new_product' %}"  class="btn btn-success">alta de productos producto</a>
+    <a type="button" href="{% url 'vanguard_app:suppliers_list' %}" class="btn btn-link">nuevo proveedor</a>
+    <a type="button" href="{% url 'vanguard_app:product_category_list' %}" class="btn btn-link">nuevo categoria</a>
+    <a type="button" href="{% url 'vanguard_app:product_status_list' %}" class="btn btn-link">nuevo status</a>
+    <a type="button" href="{% url 'vanguard_app:brands_list' %}" class="btn btn-link">nueva marca</a>
+</div>
+<form class="d-flex" method="GET">{% csrf_token %}
+    <input class="form-control me-2" type="search" id="kword" name="kword" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="?order=id">id</a></th>
+            <th scope="col"><a href="?order=part">numero de parte</a></th>
+            <th scope="col"><a href="?order=name">nombre</a></th>
+            <th scope="col"><a href="?order=brand">marca</a></th>
+            <th scope="col"><a href="?order=quantity">cantidad</a></th>
+            <th scope="col">>acciones</a></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in object_list %}
+        <tr>
+            <th scope="row">{{u.id}}</th>
+            <td>{{u.part_number}}</td>
+            <td>{{u.name | truncatechars:20}}</td>
+            <td>{{u.brand.brand_name}}</td>
+            <td>{{u.quantity}}</td>
+            <td><div><a type="button" href="{% url 'vanguard_app:product_detail' u.id %}" class="btn btn-primary btn-sm">Ver</a> <a type="button" href="{% url 'vanguard_app:product_update' u.id %}" class="btn btn-primary btn-sm">modificar</a></div></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock%}

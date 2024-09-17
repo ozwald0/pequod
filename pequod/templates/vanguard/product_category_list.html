@@ -1,0 +1,38 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+
+<div class="container">
+<div>
+    <h1>categorias de producto</h1>
+    <a type="button" href="{% url 'vanguard_app:new_product_category' %}"  class="btn btn-success">nueva categoria</a>
+</div>
+<form class="d-flex" method="GET">{% csrf_token %}
+    <input class="form-control me-2" type="search" id="kword" name="kword" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"><a href="?order=id">id</a></th>
+            <th scope="col"><a href="?order=name">nombre</a></th>
+            <th scope="col"><a href="?order=description">descripcion</a></th>
+            <th scope="col">acciones</a></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in object_list %}
+        <tr>
+            <th scope="row">{{u.id}}</th>
+            <td>{{u.product_category_name}}</td>
+            <td>{{u.product_category_description}}</td>
+            <td><div><a type="button" href="{% url 'vanguard_app:product_category_update' u.id %}" class="btn btn-primary btn-sm">modificar</a></div></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock%}

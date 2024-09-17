@@ -1,0 +1,16 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+{{ejemplo}}
+    <div class="container ">
+        <h1>detalles del status de usuarios</h1>
+        <h2>{{object.user_status_name}}</h2>
+        <h2>{{object.user_status_description}}</h2>
+        <h2>{{object.user_status_assigned_letter}}</h2>
+        <h2>{{object.user_status_short_name}}</h2>
+        <h2>{{object.user_status_code_name}}</h2>
+    </div>    
+
+{% endblock%}

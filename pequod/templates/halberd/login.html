@@ -1,0 +1,12 @@
+{% extends "halberd/base_halberd.html" %}
+
+{% load  static %}
+
+{% block content %}
+<h1>Panel de administrador</h1>
+<h2>bienvenido</h2>
+<form method="POST" action="">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Acceder</button>
+</form>
+{% endblock%}
